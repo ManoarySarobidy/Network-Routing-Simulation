@@ -1,0 +1,47 @@
+Inona aloha ilay atao hoe graphe
+
+Ny noeud iray de mety manana voisins
+Mila atao eo akaikiny ny voisins any
+De misy ihany koa ny Arc
+
+Ahoana ny fomba afaka anaovana izany
+Apetraka tsara daholo izay zavatra tiana
+Okey andao ary eh
+
+Okey manana node anaky 6 aho zao
+Ny manaraka dia ny hoe Iza ny arc makaiza
+
+Arc : From ... To ... weight ... Reachable ( true / false )
+
+Steps :
+
+1 - Get all edge from line 1 of File
+---> Result : 
+
+2 - Initialize all arcs from line >= 2 of File
+---> Result :
+
+3 - Initialize all website for every edge
+---> Result :
+
+4 - Get all child of an edge 
+---> Result : 
+
+5 - Try implementing dijkstra
+---> Result :
+
+6 - Add Websites :
+---> Result :
+
+7 - Make a search from a node
+---> Result :
+
+8 - Create a graphics interface for it
+
+-----> a - Make a frame :
+-------> Result :
+-----> b - Find a way to plot it by hand :
+-------> How can I make it by hand
+
+? - Open the file in navigator
+---> Result : 
