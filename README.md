@@ -10,6 +10,6 @@ The structure of file is like this :
     - Example : 192.0.0.1 192.0.0.2 10 true
 
 3 - To run it use :
-``` Bash
+```Bash
     java main.Main Node.txt
 ```
