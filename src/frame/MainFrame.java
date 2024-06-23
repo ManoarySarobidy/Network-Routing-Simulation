@@ -1,6 +1,5 @@
 package frame;
 
-import java.awt.*;
 import javax.swing.*;
 import graph.*;
 

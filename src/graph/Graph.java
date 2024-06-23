@@ -40,14 +40,16 @@ public class Graph{
 
 	private String[] getArcsFromFile( String filePath ) throws FileNotFoundException, IOException {
 		FileReader reader = new FileReader( filePath );
-		BufferedReader buffer = new BufferedReader( reader );
-		buffer.readLine(); // Read and skip first Line
-		Vector<String> lines = new Vector<String>();
-		String line = null;
-		while( (line = buffer.readLine()) != null ){
-			lines.add( line );
+		try( BufferedReader buffer = new BufferedReader( reader ) ){
+			buffer.readLine(); // Read and skip first Line
+			Vector<String> lines = new Vector<String>();
+			String line = null;
+			while( (line = buffer.readLine()) != null ){
+				lines.add( line );
+			}
+			return lines.toArray(new String[ lines.size() ]);
 		}
-		return lines.toArray(new String[ lines.size() ]);
+		
 	}
 
 	public void initGraph( String filePath ){
@@ -132,7 +134,6 @@ public class Graph{
 	public Edge searchPath( String destination ) throws EdgeDontExistException{
 
 		this.reset();
-		List<Edge> edges = this.getEdges(); // not visited daholo ry zareo
 		Edge source = this.getEdges().get(0);
 		source.setDistanceFrom(0);
 		PriorityQueue<Edge> edgess = new PriorityQueue<>( Comparator.comparingDouble( Edge::getDistanceFrom ) );
@@ -170,7 +171,6 @@ public class Graph{
 	public Edge searchPath( String from, String destination ) throws EdgeDontExistException{
 
 		this.reset();
-		List<Edge> edges = this.getEdges(); // not visited daholo ry zareo
 		Edge source = this.getEdge(from.trim());
 		source.setDistanceFrom(0);
 		PriorityQueue<Edge> edgess = new PriorityQueue<>( Comparator.comparingDouble( Edge::getDistanceFrom ) );
@@ -207,16 +207,13 @@ public class Graph{
 	public Edge searchWebsite( String website ) throws EdgeDontExistException{
 
 		this.reset();
-		List<Edge> edges = this.getEdges(); // not visited daholo ry zareo
 		Edge source = this.getEdges().get(0);
 		source.setDistanceFrom(0);
 		PriorityQueue<Edge> edgess = new PriorityQueue<>( Comparator.comparingDouble( Edge::getDistanceFrom ) );
 		edgess.add(source);
 		List<Edge> path = new ArrayList<Edge>();
-		Edge dest = this.getEdge(website);
 		Edge solution = null;
-		boolean isFound = false;
-
+		
 		while( !edgess.isEmpty() ){
 			Edge edge = edgess.poll();
 			edge.setVisited(true);
@@ -254,7 +251,6 @@ public class Graph{
 		edgess.add(source);
 		List<Edge> path = new ArrayList<Edge>();
 		Edge solution = null;
-		boolean isFound = false;
 		System.out.println(edges);
 		while( !edgess.isEmpty() ){
 			Edge edge = edgess.poll();
@@ -283,7 +279,6 @@ public class Graph{
 
 	public Edge testURL( String url ) throws EdgeDontExistException, PageNotFoundException{
 		this.reset();
-		List<Edge> edges = this.getEdges(); // not visited daholo ry zareo
 		Edge source = this.getEdges().get(0);
 		source.setDistanceFrom(0);
 		PriorityQueue<Edge> edgess = new PriorityQueue<>( Comparator.comparingDouble( Edge::getDistanceFrom ) );
@@ -291,11 +286,9 @@ public class Graph{
 		List<Edge> path = new ArrayList<Edge>();
 
 		String[] coordinates = url.split("/");
-		String website = coordinates[1].trim();
 		String destination = coordinates[0].trim();
 		Edge solution = null;
-		boolean isFound = false;
-
+		
 		while( !edgess.isEmpty() ){
 			Edge edge = edgess.poll();
 			edge.setVisited(true);
