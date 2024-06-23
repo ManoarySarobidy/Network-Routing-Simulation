@@ -4,15 +4,22 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import graph.*;
 import frame.*;
 
 public class PageListener implements MouseListener{
 	
 	FramePanel panel;
+	Logger logger = Logger.getLogger(PageListener.class.getName());
 
 	public PageListener( FramePanel panel ){
 		this.setPanel( panel );
+		logger.setLevel(Level.INFO);
+		logger.addHandler(new ConsoleHandler());
 	}
 
 	public void mouseExited(MouseEvent e){
