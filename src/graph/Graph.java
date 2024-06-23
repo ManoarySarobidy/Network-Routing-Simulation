@@ -103,6 +103,7 @@ public class Graph{
 		for ( String string : edges ) {
 			Edge edge = new Edge( string.trim() );
 			edgesList.add( edge );
+			System.out.println(string.trim());
 		}
 		this.setEdges(edgesList);
 	}

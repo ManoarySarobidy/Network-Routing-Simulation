@@ -1,0 +1,56 @@
+<project name="Network-Routing-Simulation">
+
+    <property name="build.dir" value="./build" />
+    <property name="classes.dir" value="${build.dir}/classes" />
+    <property name="jar.dir" value="${build.dir}/jar" />
+    <property name="website.dir" value="./Website" />
+    <property name="main.class" value="main.Main"/>
+    <property name="src.dir" value="./src"/>
+
+    <target name="init">
+        <echo> Project Initialisation </echo>
+        <mkdir dir="${build.dir}" />
+        <echo> Creating build/classes folder </echo>
+        <mkdir dir="${classes.dir}" />
+        <echo> build/classes folder created successfully </echo>
+        <echo> Creating build/jar folder </echo>
+        <mkdir dir="${jar.dir}" />
+        <echo> build/jar folder created successfully </echo>
+    </target>
+
+    <target name="clean">
+        <echo> ----- Clean ----- </echo>
+        <delete includeEmptyDirs="true">
+            <fileset dir="${build.dir}" />
+        </delete>
+
+        <echo> ----- Clean Finished ----- </echo>
+    </target>
+
+    <target name="compile" depends="init">
+        <echo> ---- Compiling project ---- </echo>
+        <javac destdir="${classes.dir}" srcdir="${src.dir}" includeantruntime="false" debug="on" />
+        <echo> ---- Project Compiled Successfully ---- </echo>
+    </target>
+
+
+    <target name="jar" depends="compile">
+        <echo> ---- Creating Executable File --- </echo>
+        <copy todir="${classes.dir}/Website">
+            <fileset dir="${website.dir}"/>
+        </copy>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}" />
+            </manifest>
+        </jar>
+        <echo> ---- Jar ${main.class} created at ${jar.dir} --- </echo>
+    </target>
+
+    <target name="run">
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true">
+            <arg value="Node.txt"/>
+        </java>
+    </target>
+
+</project>

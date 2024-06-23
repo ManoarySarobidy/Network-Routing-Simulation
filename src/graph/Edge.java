@@ -94,8 +94,10 @@ public class Edge extends Points{
 
 	public void initializeWebsite() {
 		try{
+			
 			File file = new File( Edge.WEBSITE_FOLDER + File.separator + this.getName() );
-			System.out.println(file);
+			System.out.println(file.getAbsolutePath());
+			// System.out.println(file);
 			if( file.isDirectory() ){
 				File[] files = file.listFiles();
 				for( File f : files ){
